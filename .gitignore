@@ -1,0 +1,13 @@
+# Go build output
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# SQLite database files
+*.db
+
+# IDE
+.idea/
+.vscode/
