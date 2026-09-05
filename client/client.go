@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	pb "mailingList/proto"
 	"time"
@@ -100,8 +101,9 @@ func main() {
 	defer conn.Close()
 	client := pb.NewMailingListServiceClient(conn)
 
-	// Demo: runs through a create → update → delete → batch-get flow with a test email.
-	newEmail := createEmail(client, "899@999.999")
+	// Demo: runs through a create → update → delete → batch-get flow with a unique test email.
+	testEmail := fmt.Sprintf("user_%d@example.com", time.Now().Unix())
+	newEmail := createEmail(client, testEmail)
 	newEmail.ConfirmedAt = 10000
 	updateEmail(client, newEmail)
 	deleteEmail(client, newEmail.Email)
